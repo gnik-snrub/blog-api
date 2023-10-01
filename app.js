@@ -1,8 +1,11 @@
 const express = require('express')
+const apiRouter = require('./routes/api')
 
 require('dotenv').config()
 
 const app = express()
+
+app.use('/api', apiRouter)
 
 app.get('/', (req, res) => {
   res.send('Hello World')
