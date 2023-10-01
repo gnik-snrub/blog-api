@@ -1,6 +1,5 @@
 const Post = require('../models/post')
 
-exports.deletePost = async(req, res) => {}
 exports.createPost = async(req, res) => {
   const newPost = new Post({
     title: req.body.title,
@@ -26,6 +25,10 @@ exports.updatePost = async(req, res) => {
   })
   await Post.findByIdAndUpdate(req.params.postID, updatedPost)
   res.send(updatedPost)
+}
+exports.deletePost = async(req, res) => {
+  await Post.findByIdAndDelete(req.params.postID)
+  res.send(`${req.params.postID} has been deleted`)
 }
 
 exports.createComment = async(req, res) => {}
