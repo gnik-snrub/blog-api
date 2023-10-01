@@ -15,3 +15,5 @@ router.delete('/posts/:postID/comments/:commentID', apiController.deleteComment)
 
 router.post('/login', apiController.login)
 router.post('/logout', apiController.logout)
+
+module.exports = router
