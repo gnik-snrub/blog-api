@@ -2,6 +2,8 @@ const mongoose = require('mongoose')
 const express = require('express')
 const apiRouter = require('./routes/api')
 
+const bodyParser = require('body-parser')
+
 require('dotenv').config()
 
 mongoose.set('strictQuery', false)
@@ -13,6 +15,9 @@ async function main() {
 }
 
 const app = express()
+
+app.use(bodyParser.urlencoded({ extended: false}))
+app.use(bodyParser.json())
 
 app.use('/api', apiRouter)
 
