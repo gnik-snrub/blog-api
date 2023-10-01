@@ -1,6 +1,5 @@
 const Post = require('../models/post')
 
-exports.updatePost = async(req, res) => {}
 exports.deletePost = async(req, res) => {}
 exports.createPost = async(req, res) => {
   const newPost = new Post({
@@ -15,6 +14,18 @@ exports.createPost = async(req, res) => {
 exports.readPost = async(req, res) => {
   const post = await Post.findById(req.params.postID)
   res.send(post)
+}
+exports.updatePost = async(req, res) => {
+  const oldPost = await Post.findById(req.params.postID)
+  const updatedPost = new Post({
+    title: req.body.title || oldPost.title,
+    content: req.body.content || oldPost.content,
+    author: req.body.author || oldPost.author,
+    isPublished: false || oldPost.isPublished,
+    _id: req.params.postID
+  })
+  await Post.findByIdAndUpdate(req.params.postID, updatedPost)
+  res.send(updatedPost)
 }
 
 exports.createComment = async(req, res) => {}
