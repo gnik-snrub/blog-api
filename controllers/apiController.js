@@ -1,6 +1,5 @@
 const Post = require('../models/post')
 
-exports.readPost = (req, res) => {}
 exports.updatePost = async(req, res) => {}
 exports.deletePost = async(req, res) => {}
 exports.createPost = async(req, res) => {
@@ -12,6 +11,10 @@ exports.createPost = async(req, res) => {
   })
   await newPost.save()
   res.send(`${newPost} has been submitted`)
+}
+exports.readPost = async(req, res) => {
+  const post = await Post.findById(req.params.postID)
+  res.send(post)
 }
 
 exports.createComment = async(req, res) => {}
