@@ -1,5 +1,9 @@
 const Post = require('../models/post')
 
+exports.readPosts = async(req, res) => {
+  const allPosts = await Post.find()
+  res.json(allPosts)
+}
 exports.createPost = async(req, res) => {
   const newPost = new Post({
     title: req.body.title,
@@ -12,7 +16,7 @@ exports.createPost = async(req, res) => {
 }
 exports.readPost = async(req, res) => {
   const post = await Post.findById(req.params.postID)
-  res.send(post)
+  res.json(post)
 }
 exports.updatePost = async(req, res) => {
   const oldPost = await Post.findById(req.params.postID)

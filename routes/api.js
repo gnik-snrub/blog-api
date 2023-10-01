@@ -3,6 +3,7 @@ const router = express.Router()
 
 const apiController = require('../controllers/apiController')
 
+router.get('/posts', apiController.readPosts)
 router.post('/posts', apiController.createPost)
 router.get('/posts/:postID', apiController.readPost)
 router.put('/posts/:postID', apiController.updatePost)
