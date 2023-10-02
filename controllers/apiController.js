@@ -1,4 +1,6 @@
 const Post = require('../models/post')
+const Comment = require('../models/comment')
+const User = require('../models/user')
 
 exports.readPosts = async(req, res) => {
   const allPosts = await Post.find()
@@ -9,6 +11,7 @@ exports.createPost = async(req, res) => {
     title: req.body.title,
     content: req.body.content,
     author: req.body.author,
+    date: new Date(),
     isPublished: false
   })
   await newPost.save()
