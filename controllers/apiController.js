@@ -38,10 +38,19 @@ exports.deletePost = async(req, res) => {
   res.send(`${req.params.postID} has been deleted`)
 }
 
-exports.createComment = async(req, res) => {}
 exports.readComment = (req, res) => {}
 exports.updateComment = async(req, res) => {}
 exports.deleteComment = async(req, res) => {}
+exports.createComment = async(req, res) => {
+  const newComment = new Comment({
+    username: req.body.username,
+    timestamp: new Date(),
+    content: req.body.content,
+    post: req.params.postID
+  })
+  await newComment.save()
+  res.send(`${newComment} has been submitted`)
+}
 
 exports.login = async(req, res) => {}
 exports.logout = async(req, res) => {}
