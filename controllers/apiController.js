@@ -38,7 +38,6 @@ exports.deletePost = async(req, res) => {
   res.send(`${req.params.postID} has been deleted`)
 }
 
-exports.updateComment = async(req, res) => {}
 exports.deleteComment = async(req, res) => {}
 exports.createComment = async(req, res) => {
   const newComment = new Comment({
@@ -53,6 +52,18 @@ exports.createComment = async(req, res) => {
 exports.readComment = async (req, res) => {
   const comment = await Comment.findById(req.params.commentID)
   res.json(comment)
+}
+exports.updateComment = async(req, res) => {
+  const oldComment = await Comment.findById(req.params.commentID)
+  const updatedComment = new Comment({
+    username: req.body.username || oldComment.username,
+    timestamp: req.body.timestamp || oldComment.timestamp,
+    content: req.body.content || oldComment.content,
+    post: oldComment.post,
+    _id: req.params.commentID
+  })
+  await Comment.findByIdAndUpdate(req.params.commentID, updatedComment)
+  res.send(updatedComment)
 }
 
 exports.login = async(req, res) => {}
