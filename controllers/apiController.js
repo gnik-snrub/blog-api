@@ -38,6 +38,10 @@ exports.deletePost = async(req, res) => {
   res.send(`${req.params.postID} has been deleted`)
 }
 
+exports.readComments = async(req, res) => {
+  const allPostComments = await Comment.find()
+  res.json(allPostComments)
+}
 exports.createComment = async(req, res) => {
   const newComment = new Comment({
     username: req.body.username,
