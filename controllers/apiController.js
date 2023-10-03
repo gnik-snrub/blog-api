@@ -91,4 +91,3 @@ exports.login = async(req, res) => {
   }, process.env.JWT_SECRET_KEY, { expiresIn: '30m' })
   res.json(token)
 }
-exports.logout = async(req, res) => {}
