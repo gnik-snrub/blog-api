@@ -1,3 +1,6 @@
+const jwt = require('jsonwebtoken')
+const bcrypt = require('bcryptjs')
+
 const Post = require('../models/post')
 const Comment = require('../models/comment')
 const User = require('../models/user')
@@ -73,5 +76,19 @@ exports.deleteComment = async(req, res) => {
   res.send(`${req.params.commentID} has been deleted`)
 }
 
-exports.login = async(req, res) => {}
+exports.login = async(req, res) => {
+  const user = await User.findOne({ username: req.body.username })
+  if (!user) {
+    res.send('Error logging in')
+  }
+  const match = await bcrypt.compare(req.body.password, user.password)
+  if (!match) {
+    res.send('Error logging in')
+  }
+  const token = jwt.sign({
+    username: req.body.username,
+    password: user.password,
+  }, process.env.JWT_SECRET_KEY, { expiresIn: '30m' })
+  res.json(token)
+}
 exports.logout = async(req, res) => {}
