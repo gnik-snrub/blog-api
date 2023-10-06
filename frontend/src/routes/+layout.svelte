@@ -1,0 +1,13 @@
+<script>
+	import './styles.css';
+</script>
+
+<div class="app">
+	<main>
+    <h1>The #1 Blog!</h1>
+		<slot />
+	</main>
+</div>
+
+<style>
+</style>
