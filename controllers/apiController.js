@@ -6,7 +6,8 @@ const Comment = require('../models/comment')
 const User = require('../models/user')
 
 exports.readPosts = async(req, res) => {
-  const allPosts = await Post.find()
+  let allPosts = await Post.find()
+  allPosts = allPosts.map(post => post.toObject({virtuals: true}))
   res.json(allPosts)
 }
 exports.createPost = async(req, res) => {
@@ -79,11 +80,11 @@ exports.deleteComment = async(req, res) => {
 exports.login = async(req, res) => {
   const user = await User.findOne({ username: req.body.username })
   if (!user) {
-    res.send('Error logging in')
+    res.status(403)
   }
   const match = await bcrypt.compare(req.body.password, user.password)
   if (!match) {
-    res.send('Error logging in')
+    res.status(403)
   }
   const token = jwt.sign({
     username: req.body.username,
