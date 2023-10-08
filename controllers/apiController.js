@@ -23,7 +23,7 @@ exports.createPost = async(req, res) => {
 }
 exports.readPost = async(req, res) => {
   const post = await Post.findById(req.params.postID)
-  res.json(post)
+  res.json(post.toObject({virtuals: true}))
 }
 exports.updatePost = async(req, res) => {
   const oldPost = await Post.findById(req.params.postID)
