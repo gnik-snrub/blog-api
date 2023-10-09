@@ -43,7 +43,7 @@ exports.deletePost = async(req, res) => {
 }
 
 exports.readComments = async(req, res) => {
-  const allPostComments = await Comment.find()
+  const allPostComments = await Comment.find({ post: req.params.postID })
   res.json(allPostComments)
 }
 exports.createComment = async(req, res) => {
