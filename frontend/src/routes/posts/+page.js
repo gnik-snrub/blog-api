@@ -1,5 +1,5 @@
-export async function load({ fetch }) {
-  const response = await fetch(`${import.meta.env.VITE_API_DOMAIN}/api/posts`)
-  const posts = await response.json()
+import { fetchData } from '/src/lib/fetchData.js'
+export async function load() {
+  const posts = await fetchData(`${import.meta.env.VITE_API_DOMAIN}/api/posts/`)
   return { posts }
 }
