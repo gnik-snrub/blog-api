@@ -33,6 +33,7 @@ const { posts } = data
   h3 {
     margin: 0;
     margin-bottom: 0.5em;
+    color: #4075a6;
     font-size: 30px;
   }
 </style>

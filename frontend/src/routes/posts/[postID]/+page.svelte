@@ -3,11 +3,43 @@ export let data
 const { post } = data
 </script>
 
+<section>
 {#if Object.keys(post).length === 0}
   <span>Loading...</span>
 {:else}
-  <h1>{post.title}</h1>
-  <span>{post.author} - {post.date_yyyy_mm_dd}</span>
-  <div>{post.content}</div>
+  <h3>{post.title} - {post.date_yyyy_mm_dd}</h3>
+  <span>{post.author}</span>
+  <p>{post.content}</p>
 {/if}
   <a href="/posts">Back</a>
+</section>
+
+<style>
+  section {
+    display: flex;
+    flex-flow: column;
+    width: 50%;
+    margin: 0 auto;
+    border-radius: 15px;
+    background-color: white;
+    color: black;
+    padding: 10px 0;
+  }
+  h3 {
+    margin: 0;
+    margin-bottom: 0.5em;
+    color: #4075a6;
+    font-size: 30px;
+  }
+  section > * {
+    width: 80%;
+    margin-left: 10%;
+  }
+  a {
+    padding: 0;
+    margin: 0;
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+  }
+</style>
