@@ -1,15 +1,27 @@
 <script>
 export let data
-const { post } = data
+const { post, comments } = data
 </script>
 
 <section>
 {#if Object.keys(post).length === 0}
-  <span>Loading...</span>
+  <span>Loading post...</span>
 {:else}
   <h3>{post.title} - {post.date_yyyy_mm_dd}</h3>
   <span>{post.author}</span>
   <p>{post.content}</p>
+{/if}
+{#if Object.keys(comments).length === 0}
+  <span>Loading comments...</span>
+{:else}
+  {#if comments[0].timestamp !== undefined}
+    <h5>Comments:</h5>
+    {#each comments as comment}
+      <span>{comment.timestamp} - {comment.username}: {comment.content}</span>
+    {/each}
+  {:else}
+    <h5>No Comments</h5>
+  {/if}
 {/if}
   <a href="/posts">Back</a>
 </section>
