@@ -1,13 +1,6 @@
 <script>
-  let posts = []
-  async function fetchPosts() {
-    fetch('http://localhost:3000/api/posts')
-    .then(res => res.json())
-    .then(data => {
-      posts = data
-    })
-  }
-  fetchPosts()
+export let data
+const { posts } = data
 </script>
 
 <main>
