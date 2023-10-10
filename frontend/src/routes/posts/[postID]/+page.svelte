@@ -22,11 +22,20 @@ const { post, comments } = data
   {:else}
     <h5>No Comments</h5>
   {/if}
+  <form on:submit|preventDefault={handleSubmit}>
+    <input type="text" name="username" placeholder="Username" bind:value={usernameInput}/>
+    <input type="text" name="content" placeholder="Comment" bind:value={contentInput}/>
+    <button type="submit">Submit</button>
+  </form>
 {/if}
   <a href="/posts">Back</a>
 </section>
 
 <style>
+  form {
+    display: flex;
+    flex-direction: column;
+  }
   section {
     display: flex;
     flex-flow: column;
