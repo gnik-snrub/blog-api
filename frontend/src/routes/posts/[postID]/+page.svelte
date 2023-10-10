@@ -1,6 +1,12 @@
 <script>
 export let data
-const { post, comments } = data
+const { post, commentsData, postID } = data
+
+let comments
+commentsData.subscribe((val) => {
+  comments = val
+})
+
 </script>
 
 <section>
