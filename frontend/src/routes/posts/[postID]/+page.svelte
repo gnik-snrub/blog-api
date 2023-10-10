@@ -7,6 +7,27 @@ commentsData.subscribe((val) => {
   comments = val
 })
 
+let usernameInput = ''
+let contentInput = ''
+
+async function handleSubmit(e) {
+  e.preventDefault()
+  const response = await fetch(`${import.meta.env.VITE_API_DOMAIN}/api/posts/${postID}/comments`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({username: usernameInput, content: contentInput})
+  })
+  if (response.ok) {
+    const response = await fetch(`${import.meta.env.VITE_API_DOMAIN}/api/posts/${postID}/comments`)
+    const data = await response.json()
+    commentsData.set(data)
+  }
+
+  usernameInput = ''
+  contentInput = ''
+}
 </script>
 
 <section>
