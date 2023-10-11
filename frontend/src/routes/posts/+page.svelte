@@ -8,36 +8,36 @@ const { posts } = data
 export const title = 'The #1 Blog!'
 </script>
 
-<main>
-  {#if posts.length > 0}
-    {#each posts as post}
-      {#if !post.isPublished}
-        <div>
-          <a href={`/posts/${post._id}`}><h3>{post.title} - {post.date_yyyy_mm_dd}</h3></a>
-          <span>{post.content}</span>
-        </div>
-      {/if}
-    {/each}
-  {:else}
-    <p>Loading...</p>
-  {/if}
-</main>
+{#if posts.length > 0}
+  {#each posts as post}
+    {#if !post.isPublished}
+      <div>
+        <a href={`/posts/${post._id}`}>
+          <h2>{post.title}: </h2>
+          <span> {post.date_yyyy_mm_dd}</span>
+        </a>
+      </div>
+    {/if}
+  {/each}
+{:else}
+  <p>Loading...</p>
+{/if}
 
 <style>
-  main {
-    width: 50%;
-    margin: 0 auto;
-  }
   div {
     border-radius: 15px;
+    border: 1px solid #4075a6;
     background-color: white;
     color: black;
     margin-top: 20px;
     padding: 10px 10%;
   }
-  h3 {
+  a > * {
+    display: inline;
+  }
+  h2 {
     margin: 0;
-    margin-bottom: 0.5em;
+    font-weight: 700;
     color: #4075a6;
     font-size: 30px;
   }

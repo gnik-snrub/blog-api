@@ -37,57 +37,58 @@ async function handleSubmit(e) {
 </script>
 
 <section>
-{#if Object.keys(post).length === 0}
-  <span>Loading post...</span>
-{:else}
-  <h3>{post.title} - {post.date_yyyy_mm_dd}</h3>
-  <span>{post.author}</span>
-  <p>{post.content}</p>
-{/if}
-{#if Object.keys(comments).length === 0}
-  <span>Loading comments...</span>
-{:else}
-  {#if comments[0].timestamp !== undefined}
-    <h5>Comments:</h5>
-    {#each comments as comment}
-      <span>{comment.timestamp} - {comment.username}: {comment.content}</span>
-    {/each}
+  {#if Object.keys(post).length === 0}
+    <span>Loading post...</span>
   {:else}
-    <h5>No Comments</h5>
+    <div id="post_title">
+      <h2>{post.title}: </h2>
+      <span>{post.date_yyyy_mm_dd}</span>
+    </div>
+    <span>{post.author}</span>
+    <p>{post.content}</p>
   {/if}
-  <form on:submit|preventDefault={handleSubmit}>
-    <input type="text" name="username" placeholder="Username" bind:value={usernameInput}/>
-    <input type="text" name="content" placeholder="Comment" bind:value={contentInput}/>
-    <button type="submit">Submit</button>
-  </form>
-{/if}
-  <a href="/posts">Back</a>
+  {#if Object.keys(comments).length === 0}
+    <span>Loading comments...</span>
+  {:else}
+    {#if comments[0].timestamp !== undefined}
+      <h5>Comments:</h5>
+      {#each comments as comment}
+        <span>{comment.timestamp} - {comment.username}: {comment.content}</span>
+      {/each}
+    {:else}
+      <h5>No Comments</h5>
+    {/if}
+    <form on:submit|preventDefault={handleSubmit}>
+      <input type="text" name="username" placeholder="Username" bind:value={usernameInput}/>
+      <input type="text" name="content" placeholder="Comment" bind:value={contentInput}/>
+      <button type="submit">Submit</button>
+    </form>
+  {/if}
+    <a href="/posts">Back</a>
 </section>
 
 <style>
-  form {
-    display: flex;
-    flex-direction: column;
-  }
   section {
     display: flex;
     flex-flow: column;
-    width: 50%;
-    margin: 0 auto;
     border-radius: 15px;
+    border: 1px solid #4075a6;
     background-color: white;
     color: black;
-    padding: 10px 0;
+    padding: 10px 10%;
   }
-  h3 {
-    margin: 0;
-    margin-bottom: 0.5em;
+  #post_title > * {
+    display: inline;
     color: #4075a6;
+  }
+  h2 {
+    margin: 0;
+    font-weight: 700;
     font-size: 30px;
   }
-  section > * {
-    width: 80%;
-    margin-left: 10%;
+  form {
+    display: flex;
+    flex-direction: column;
   }
   a {
     padding: 0;
