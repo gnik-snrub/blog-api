@@ -1,6 +1,12 @@
+<svelte:head>
+  <title>{title}</title>
+</svelte:head>
+
 <script>
 export let data
 const { post, commentsData, postID } = data
+
+export const title = post.title
 
 let comments
 commentsData.subscribe((val) => {

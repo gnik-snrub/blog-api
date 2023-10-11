@@ -1,6 +1,11 @@
+<svelte:head>
+  <title>{title}</title>
+</svelte:head>
+
 <script>
 export let data
 const { posts } = data
+export const title = 'The #1 Blog!'
 </script>
 
 <main>
