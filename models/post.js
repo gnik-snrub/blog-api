@@ -12,7 +12,7 @@ const PostSchema = new Schema({
 })
 
 PostSchema.virtual('date_yyyy_mm_dd').get(function() {
-  return DateTime.fromJSDate(this.date).toISODate()
+  return DateTime.fromJSDate(this.date).toLocaleString(DateTime.DATE_SHORT)
 })
 
 module.exports = mongoose.model('Post', PostSchema)
