@@ -50,13 +50,11 @@ async function handleSubmit(e) {
   {#if Object.keys(comments).length === 0}
     <span>Loading comments...</span>
   {:else}
+    <h3>Comments:</h3>
     {#if comments[0].timestamp !== undefined}
-      <h5>Comments:</h5>
       {#each comments as comment}
-        <span>{comment.timestamp} - {comment.username}: {comment.content}</span>
+        <span>{comment.timestamp_formatted} - {comment.username}: {comment.content}</span>
       {/each}
-    {:else}
-      <h5>No Comments</h5>
     {/if}
     <form on:submit|preventDefault={handleSubmit}>
       <input type="text" name="username" placeholder="Username" bind:value={usernameInput}/>
@@ -87,6 +85,7 @@ async function handleSubmit(e) {
     font-size: 30px;
   }
   form {
+    margin-top: 1em;
     display: flex;
     flex-direction: column;
   }
