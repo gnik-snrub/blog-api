@@ -26,7 +26,6 @@ export const title = 'The #1 Blog!'
 <style>
   div {
     border-radius: 15px;
-    border: 1px solid #4075a6;
     background-color: white;
     color: black;
     margin-top: 20px;
