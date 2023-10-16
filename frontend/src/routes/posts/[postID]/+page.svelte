@@ -57,12 +57,18 @@ async function handleSubmit(e) {
       {/each}
     {/if}
     <form on:submit|preventDefault={handleSubmit}>
+      <label for="username">Username: </label>
       <input type="text" name="username" placeholder="Username" bind:value={usernameInput}/>
-      <input type="text" name="content" placeholder="Comment" bind:value={contentInput}/>
-      <button type="submit">Submit</button>
+      <div id="form-comment-row">
+        <label for="username">Comment: </label>
+        <input type="text" name="content" placeholder="Comment" bind:value={contentInput}/>
+      </div>
+      <div id="buttons">
+        <button type="submit">Submit Comment</button>
+        <a href="/posts">Back</a>
+      </div>
     </form>
   {/if}
-    <a href="/posts">Back</a>
 </section>
 
 <style>
@@ -87,13 +93,35 @@ async function handleSubmit(e) {
   form {
     margin-top: 1em;
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
   }
-  a {
+  #form-comment-row {
+    width: 100%;
+    display: flex;
+  }
+  #form-comment-row > input{
+    flex: 1;
+  }
+  button {
+    background-color: transparent;
+    border: none;
     padding: 0;
     margin: 0;
-    margin-top: 10px;
-    width: 100%;
+  }
+  button:hover {
+    text-decoration: underline;
+  }
+  a {
+    color: black;
+    padding: 0;
+    margin: 0;
     text-align: center;
+  }
+  #buttons {
+    width: 100%;
+    margin-top: 0.7em;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
   }
 </style>
