@@ -25,19 +25,6 @@
 </div>
 
 <style>
-  .app {
-    width: 100%;
-    height: 100%;
-    display: grid;
-    grid-template-columns: 20% auto;
-    font-family: Arial, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-;
-  }
-  main {
-    width: 100%;
-    height: 100%;
-    margin: 0 auto;
-  }
   nav {
     color: #24889e;
   }
@@ -52,13 +39,6 @@
     text-align: center;
     padding: 0;
     margin: 0 0.3em;
-  }
-  ul {
-    list-style: none;
-  }
-  a {
-    text-decoration: none;
-    color: #ebeef0;
   }
   li {
     margin-top: 1em;
