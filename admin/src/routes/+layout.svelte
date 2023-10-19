@@ -8,11 +8,12 @@
 
 <div class="app">
   <nav>
-  <div id="nav_heading_wrapper">
-    <h1>Admin</h1>
-    <h1>Dashboard</h1>
-  </div>
+    <div id="nav_heading_wrapper">
+      <h1>Admin</h1>
+      <h1>Dashboard</h1>
+    </div>
     <ul id="nav_list">
+      <li class="nav_item"><a href="/admin">Home</a></li>
       <li class="nav_item"><a href="/admin/new_post">Create a new post</a></li>
       <li class="nav_item"><a href="/admin/view_published">View all published posts</a></li>
       <li class="nav_item"><a href="/admin/view_unpublished">View all unpublished posts</a></li>
