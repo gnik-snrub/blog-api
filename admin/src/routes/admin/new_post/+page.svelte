@@ -1,8 +1,21 @@
-<p>New Post!</p>
 <script>
+  import { goto } from '$app/navigation'
   let title, author, content = ''
   let isPublished = false
   async function submitPost() {
+    const data = new URLSearchParams()
+    data.append('title', title)
+    data.append('author', author)
+    data.append('content', content)
+    data.append('isPublished', isPublished)
+
+    const response = await fetch(`${import.meta.env.VITE_API_DOMAIN}/api/posts`, {
+      method: 'POST',
+      body: data
+    })
+    const { id } = await response.json()
+    goto(`/admin/post_${id}`)
+  }
   function togglePublished() {
     isPublished = !isPublished
   }
