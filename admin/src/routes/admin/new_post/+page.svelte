@@ -4,6 +4,7 @@
   let isPublished = false
   async function submitPost() {
   function togglePublished() {
+    isPublished = !isPublished
   }
 </script>
 
