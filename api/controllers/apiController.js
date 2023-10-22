@@ -16,7 +16,7 @@ exports.createPost = async(req, res) => {
     content: req.body.content,
     author: req.body.author,
     date: new Date(),
-    isPublished: false
+    isPublished: req.body.isPublished
   })
   await newPost.save()
   res.send(`${newPost} has been submitted`)
