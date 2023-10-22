@@ -16,10 +16,10 @@ exports.createPost = async(req, res) => {
     content: req.body.content,
     author: req.body.author,
     date: new Date(),
-    isPublished: req.body.isPublished
+    isPublished: req.body.isPublished,
   })
   await newPost.save()
-  res.send(`${newPost} has been submitted`)
+  res.json({id: newPost._id})
 }
 exports.readPost = async(req, res) => {
   const post = await Post.findById(req.params.postID)
