@@ -6,5 +6,5 @@
 <p>All published posts!</p>
 
 {#each filtered as post }
-  <a href={`/admin/${post._id}`}><p>{post.title}</p></a>
+  <a href={`/admin/post_${post._id}`}><p>{post.title}</p></a>
 {/each}
