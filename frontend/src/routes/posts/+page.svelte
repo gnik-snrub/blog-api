@@ -10,14 +10,12 @@ export const title = 'The #1 Blog!'
 
 {#if posts.length > 0}
   {#each posts as post}
-    {#if !post.isPublished}
-      <div>
-        <a href={`/posts/${post._id}`}>
-          <h2>{post.title}: </h2>
-          <span> {post.date_yyyy_mm_dd}</span>
-        </a>
-      </div>
-    {/if}
+    <div>
+      <a href={`/posts/${post._id}`}>
+        <h2>{post.title}: </h2>
+        <span> {post.date_yyyy_mm_dd}</span>
+      </a>
+    </div>
   {/each}
 {:else}
   <p>Loading...</p>
