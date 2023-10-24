@@ -47,28 +47,28 @@ async function handleSubmit(e) {
     <span>{post.author}</span>
     <p>{post.content}</p>
   {/if}
+  <h3>Comments:</h3>
   {#if Object.keys(comments).length === 0}
-    <span>Loading comments...</span>
+    <span>No comments found, but yours could be first!</span>
   {:else}
-    <h3>Comments:</h3>
     {#if comments[0].timestamp !== undefined}
       {#each comments as comment}
         <span>{comment.timestamp_formatted} - {comment.username}: {comment.content}</span>
       {/each}
     {/if}
-    <form on:submit|preventDefault={handleSubmit}>
-      <label for="username">Username: </label>
-      <input type="text" name="username" placeholder="Username" bind:value={usernameInput}/>
-      <div id="form-comment-row">
-        <label for="username">Comment: </label>
-        <input type="text" name="content" placeholder="Comment" bind:value={contentInput}/>
-      </div>
-      <div id="buttons">
-        <button type="submit">Submit Comment</button>
-        <a href="/posts">Back</a>
-      </div>
-    </form>
   {/if}
+  <form on:submit|preventDefault={handleSubmit}>
+    <label for="username">Username: </label>
+    <input type="text" name="username" placeholder="Username" bind:value={usernameInput}/>
+    <div id="form-comment-row">
+      <label for="username">Comment: </label>
+      <input type="text" name="content" placeholder="Comment" bind:value={contentInput}/>
+    </div>
+    <div id="buttons">
+      <button type="submit">Submit Comment</button>
+      <a href="/posts">Back</a>
+    </div>
+  </form>
 </section>
 
 <style>
