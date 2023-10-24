@@ -1,6 +1,26 @@
 <script>
   export let data
-  const { post, comments } = data
+  let { post, comments } = data
+
+  comments = comments.map((comment) => {
+    return {comment, showDeleteConfirmation: false}
+  })
+
+  function toggleDeleteConfirm(id) {
+    console.log(id)
+    comments = comments.map((item) => {
+      console.log(item)
+      return item.comment._id === id ? {...item, showDeleteConfirmation: !item.showDeleteConfirmation} : item
+    })
+  }
+
+  async function deletePost(id) {
+    console.log(id, post.id)
+    await fetch(`${import.meta.env.VITE_API_DOMAIN}/api/posts/${post.id}/comments/${id}`, {
+      method: 'DELETE'
+    })
+    location.reload()
+  }
 </script>
 
 <h2>{post.title}</h2>
@@ -9,11 +29,20 @@
 <p>{post.content}</p>
 <h3>Comments: </h3>
 <ul>
-{#each comments as comment}
+{#each comments as {comment, showDeleteConfirmation}}
   <li>
     <p>User: {comment.username}</p>
     <p>Timestamp: {comment.timestamp_formatted}</p>
     <p>Content: {comment.content}</p>
+    {#if !showDeleteConfirmation}
+      <button on:click={() => toggleDeleteConfirm(comment._id)}>Delete</button>
+    {:else}
+      <span>
+        <button on:click={() => deletePost(comment._id)}>Delete</button>
+        <p>Are you sure you want to delete this comment?</p>
+        <button on:click={() => toggleDeleteConfirm(comment._id)}>Cancel</button>
+      </span>
+    {/if}
   </li>
 {/each}
 </ul>
