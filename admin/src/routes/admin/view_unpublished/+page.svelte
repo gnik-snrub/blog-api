@@ -26,7 +26,7 @@
   <li>
     {#if !showDeleteConfirmation}
       <button on:click={() => toggleDeleteConfirm(item._id)}>Delete</button>
-      <a href={`/admin/post_${item._id}`}><p>{item.title} - {showDeleteConfirmation}</p></a>
+      <a href={`/admin/post_${item._id}`}><p>{item.title}</p></a>
     {:else}
       <button on:click={() => deletePost(item._id)}>Delete</button>
       <p>Are you sure you want to delete '{item.title}'?</p>
