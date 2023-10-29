@@ -1,4 +1,4 @@
-export async function load () {
+export async function load ({ fetch }) {
   const postsResponse = await fetch(`${import.meta.env.VITE_API_DOMAIN}/api/posts/`)
   const posts = await postsResponse.json()
   let comments = []
