@@ -20,7 +20,7 @@
     </ul>
   </nav>
 	<main>
-		<slot />
+    <slot />
 	</main>
 </div>
 
