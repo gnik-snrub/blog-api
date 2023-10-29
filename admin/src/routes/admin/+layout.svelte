@@ -9,7 +9,6 @@
 
   $: {
     if ($authToken) {
-      console.log($authToken)
       showContent = true
     } else if (browser){
       goto('/login')

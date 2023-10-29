@@ -7,15 +7,12 @@
   })
 
   function toggleDeleteConfirm(id) {
-    console.log(id)
     comments = comments.map((item) => {
-      console.log(item)
       return item.comment._id === id ? {...item, showDeleteConfirmation: !item.showDeleteConfirmation} : item
     })
   }
 
   async function deletePost(id) {
-    console.log(id, post.id)
     await fetch(`${import.meta.env.VITE_API_DOMAIN}/api/posts/${post.id}/comments/${id}`, {
       method: 'DELETE'
     })
