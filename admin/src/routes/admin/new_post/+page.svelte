@@ -1,7 +1,10 @@
 <script>
   import { goto } from '$app/navigation'
+  import { fetchPosts } from '/src/stores/posts'
+
   let title, author, content = ''
   let isPublished = false
+
   async function submitPost() {
     const data = new URLSearchParams()
     data.append('title', title)
@@ -14,6 +17,7 @@
       body: data
     })
     const { id } = await response.json()
+    await fetchPosts()
     goto(`/admin/post_${id}`)
   }
   function togglePublished() {
