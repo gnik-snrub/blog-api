@@ -1,5 +1,6 @@
 <script>
   import { goto } from '$app/navigation'
+  import { authToken } from '/src/stores/authStore';
   import { fetchPosts } from '/src/stores/posts'
 
   let title, author, content = ''
@@ -14,7 +15,10 @@
 
     const response = await fetch(`${import.meta.env.VITE_API_DOMAIN}/api/posts`, {
       method: 'POST',
-      body: data
+      body: data,
+      headers: {
+        Authorization: `Bearer ${$authToken}`
+      }
     })
     const { id } = await response.json()
     await fetchPosts()

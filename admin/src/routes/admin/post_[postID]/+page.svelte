@@ -1,4 +1,6 @@
 <script>
+  import {authToken} from 'src/stores/authStore';
+
   export let data
   let { post, comments } = data
 
