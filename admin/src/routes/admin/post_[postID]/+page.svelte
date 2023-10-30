@@ -1,5 +1,5 @@
 <script>
-  import {authToken} from 'src/stores/authStore';
+  import {authToken} from '/src/stores/authStore';
 
   export let data
   let { post, comments } = data
@@ -16,7 +16,10 @@
 
   async function deletePost(id) {
     await fetch(`${import.meta.env.VITE_API_DOMAIN}/api/posts/${post.id}/comments/${id}`, {
-      method: 'DELETE'
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${$authToken}`
+      }
     })
     location.reload()
   }
