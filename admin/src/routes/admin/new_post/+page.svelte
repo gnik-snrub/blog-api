@@ -1,7 +1,5 @@
 <script>
   import { goto } from '$app/navigation'
-  export let data
-  const { fetch } = data
   let title, author, content = ''
   let isPublished = false
   async function submitPost() {
