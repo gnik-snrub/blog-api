@@ -1,10 +1,20 @@
 <script>
-  export let data
-  const { filtered } = data
+  import {onMount} from 'svelte';
+  import {authToken} from '/src/stores/authStore';
 
-  let items = filtered.map((item) => {
-    return {item, showDeleteConfirmation: false}
+  import { publishedPosts, fetchPosts } from '/src/stores/posts'
+
+  let items = []
+
+  onMount(async () => {
+    await fetchPosts()
   })
+
+  $: {
+    items = $publishedPosts.map((item) => {
+      return {item, showDeleteConfirmation: false}
+    })
+  }
 
   function toggleDeleteConfirm(id) {
     items = items.map((item) => {
@@ -14,9 +24,12 @@
 
   async function deletePost(id) {
     await fetch(`${import.meta.env.VITE_API_DOMAIN}/api/posts/${id}`, {
-      method: 'DELETE'
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${$authToken}`
+      }
     })
-    location.reload()
+    await fetchPosts()
   }
 </script>
 
