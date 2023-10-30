@@ -1,12 +1,24 @@
 <script>
+  import {onDestroy, onMount} from 'svelte';
   import {authToken} from '/src/stores/authStore';
+  import { loading, postsComments, fetchComments } from '/src/stores/comments'
 
   export let data
-  let { post, comments } = data
+  const { post, postID } = data
 
-  comments = comments.map((comment) => {
-    return {comment, showDeleteConfirmation: false}
+  let comments = []
+
+  onMount(async () => {
+    await fetchComments(postID)
   })
+
+  onDestroy(() => postsComments.set([]))
+
+  $: {
+    comments = $postsComments.map((comment) => {
+      return {comment, showDeleteConfirmation: false}
+    })
+  }
 
   function toggleDeleteConfirm(id) {
     comments = comments.map((item) => {
