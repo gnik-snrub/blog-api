@@ -1,5 +1,13 @@
 <script>
+  import { onMount } from 'svelte';
+
   import './styles.css';
+  import { fetchPosts } from '/src/stores/posts'
+
+  onMount(async () => {
+    await fetchPosts()
+  })
+
 </script>
 
 <svelte:head>
