@@ -1,4 +1,8 @@
 <script>
+  import { goto } from '$app/navigation'
+  import { authToken } from '/src/stores/authStore';
+  import { fetchPosts } from '/src/stores/posts'
+
   export let data
   const { post, postID, fetch } = data
 
@@ -6,6 +10,25 @@
   let author = post.author
   let content = post.content
   let isPublished = post.isPublished
+
+  async function submitPost() {
+    const data = new URLSearchParams()
+    data.append('title', title)
+    data.append('author', author)
+    data.append('content', content)
+    data.append('isPublished', isPublished)
+
+    await fetch(`${import.meta.env.VITE_API_DOMAIN}/api/posts/${postID}`, {
+      method: 'PUT',
+      body: data,
+      headers: {
+        Authorization: `Bearer ${$authToken}`
+      }
+    })
+
+    await fetchPosts()
+    goto(`/admin/post_${postID}`)
+  }
 
   function togglePublished() {
     isPublished = !isPublished
