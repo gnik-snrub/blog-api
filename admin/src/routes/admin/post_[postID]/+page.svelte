@@ -66,6 +66,7 @@
     <p>No comments found</p>
   {/if}
 </ul>
+  <a href={`/admin/update_${postID}`}><p>Update Post</p></a>
 
 <style>
   p {
