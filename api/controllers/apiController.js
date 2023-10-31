@@ -31,7 +31,7 @@ exports.updatePost = async(req, res) => {
     title: req.body.title || oldPost.title,
     content: req.body.content || oldPost.content,
     author: req.body.author || oldPost.author,
-    isPublished: false || oldPost.isPublished,
+    isPublished: req.body.isPublished || oldPost.isPublished,
     _id: req.params.postID
   })
   await Post.findByIdAndUpdate(req.params.postID, updatedPost)
