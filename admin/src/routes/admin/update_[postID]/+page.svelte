@@ -1,3 +1,17 @@
+<script>
+  export let data
+  const { post, postID, fetch } = data
+
+  let title = post.title
+  let author = post.author
+  let content = post.content
+  let isPublished = post.isPublished
+
+  function togglePublished() {
+    isPublished = !isPublished
+  }
+</script>
+
 <h2>Update Post!</h2>
 
 <form on:submit|preventDefault={submitPost}>
