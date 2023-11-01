@@ -54,7 +54,7 @@
         {#if !showDeleteConfirmation}
           <button on:click={() => toggleDeleteConfirm(comment._id)}>Delete</button>
         {:else}
-          <span>
+          <span class="deleteCommentWrapper">
             <button on:click={() => deletePost(comment._id)}>Delete</button>
             <p>Are you sure you want to delete this comment?</p>
             <button on:click={() => toggleDeleteConfirm(comment._id)}>Cancel</button>
@@ -74,5 +74,12 @@
   }
   li {
     margin-bottom: 1em;
+  }
+  .deleteCommentWrapper {
+    display: flex;
+    flex-direction: row;
+  }
+  .deleteCommentWrapper > p {
+    margin: 0 1em;
   }
 </style>
