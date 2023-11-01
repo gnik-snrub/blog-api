@@ -41,6 +41,7 @@
 <p>{post.date_yyyy_mm_dd} - {post.author}</p>
 <p>{post.isPublished ? 'Post has been published' : 'Post is currently unpublished'}</p>
 <p>{post.content}</p>
+<a href={`/admin/update_${postID}`}><p>Update Post</p></a>
 <h3>Comments: </h3>
 <ul>
   {#if $loading}
@@ -66,11 +67,13 @@
     <p>No comments found</p>
   {/if}
 </ul>
-  <a href={`/admin/update_${postID}`}><p>Update Post</p></a>
 
 <style>
   p {
     margin: 0;
+  }
+  a > p {
+    margin-top: 1em;
   }
   li {
     margin-bottom: 1em;
