@@ -33,7 +33,9 @@
   }
 </script>
 
-<p>All unpublished posts!</p>
+<div id="titleWrapper">
+  <h2>All unpublished posts!</h2>
+</div>
 
 <ul>
 {#each items as {item, showDeleteConfirmation} }
@@ -51,6 +53,17 @@
 </ul>
 
 <style>
+  #titleWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  h2 {
+    border-bottom: 3px solid #24889e;
+    width: fit-content;
+    padding: 0 1em;
+    padding-bottom: 0.2em;
+  }
   li {
     width: 100%;
     display: grid;
@@ -61,5 +74,14 @@
   button {
     height: fit-content;
     margin: 0 2em;
+    background-color: transparent;
+    font-size: 1em;
+    transition: 0.3s;
+    color: #ebeef0;
+    border: none;
+    outline: none;
+  }
+  button:hover {
+    color: #24889e;
   }
 </style>
