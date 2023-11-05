@@ -33,7 +33,7 @@
         Authorization: `Bearer ${$authToken}`
       }
     })
-    location.reload()
+    await fetchComments(postID)
   }
 </script>
 
