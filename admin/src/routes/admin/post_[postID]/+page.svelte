@@ -57,15 +57,15 @@
         <p>User: {comment.username}</p>
         <p>Timestamp: {comment.timestamp_formatted}</p>
         <p>Content: {comment.content}</p>
-        {#if !showDeleteConfirmation}
-          <button on:click={() => toggleDeleteConfirm(comment._id)}>Delete</button>
-        {:else}
-          <span class="deleteCommentWrapper">
-            <button on:click={() => deletePost(comment._id)}>Delete</button>
-            <p>Are you sure you want to delete this comment?</p>
-            <button on:click={() => toggleDeleteConfirm(comment._id)}>Cancel</button>
-          </span>
-        {/if}
+        <span class="deleteCommentWrapper">
+          {#if !showDeleteConfirmation}
+            <button on:click={() => toggleDeleteConfirm(comment._id)}>Delete</button>
+          {:else}
+              <button on:click={() => deletePost(comment._id)}>Delete</button>
+              <p>Are you sure you want to delete this comment?</p>
+              <button on:click={() => toggleDeleteConfirm(comment._id)}>Cancel</button>
+          {/if}
+        </span>
       </li>
     {/each}
   {:else}
@@ -109,8 +109,23 @@
   .deleteCommentWrapper {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    margin-top: 0.3em;
   }
   .deleteCommentWrapper > p {
     margin: 0 1em;
+  }
+  button {
+    height: fit-content;
+    background-color: transparent;
+    font-size: 1em;
+    padding: 0;
+    transition: 0.3s;
+    color: #ebeef0;
+    border: none;
+    outline: none;
+  }
+  button:hover {
+    color: #24889e;
   }
 </style>
