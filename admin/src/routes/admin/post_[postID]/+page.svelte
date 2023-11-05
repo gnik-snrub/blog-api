@@ -37,10 +37,15 @@
   }
 </script>
 
-<h2>{post.title}</h2>
+<div id="titleWrapper">
+  <h2>{post.title}</h2>
+</div>
 <p>{post.date_yyyy_mm_dd} - {post.author}</p>
 <p>{post.isPublished ? 'Post has been published' : 'Post is currently unpublished'}</p>
-<p>{post.content}</p>
+<div id="content">
+  <h3>Content: </h3>
+  <p>{post.content}</p>
+</div>
 <a href={`/admin/update_${postID}`}><p>Update Post</p></a>
 <h3>Comments: </h3>
 <ul>
@@ -69,6 +74,29 @@
 </ul>
 
 <style>
+  #titleWrapper {
+    width: 100%;
+    display: flex;
+  }
+  h2 {
+    border-bottom: 3px solid #24889e;
+    width: fit-content;
+    padding: 0 1em;
+    padding-bottom: 0.2em;
+  }
+  #content {
+    margin-top: 1em;
+    width: 70%;
+    margin-bottom: 2em;
+  }
+  #content > h3 {
+    border-bottom: 1px solid #24889e;
+    width: 5em;
+    text-align: center;
+  }
+  #content > p {
+    margin-left: 1em;
+  }
   p {
     margin: 0;
   }
