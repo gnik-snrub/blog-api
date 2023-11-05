@@ -38,21 +38,80 @@
 <h2>Update Post!</h2>
 
 <form on:submit|preventDefault={submitPost}>
-  <label>
+  <button type="submit" id="submit">Submit Post</button>
+  <label id="publishCheckbox">
+    Publish on submit?
+    <input on:change={togglePublished} type='checkbox'/>
+  </label>
+  <label id="titleInput">
     Title
     <input bind:value={title} type='text'/>
   </label>
-  <label>
+  <label id="authorInput">
     Author
     <input bind:value={author} type='text'/>
   </label>
-  <label>
+  <label id="contentInput">
     Content
-    <input bind:value={content} type='textarea'/>
+    <textarea bind:value={content} />
   </label>
-  <label>
-    Publish on submit?
-    <input bind:checked={isPublished} onclick={togglePublished} type='checkbox'/>
-  </label>
-  <button type="submit">Update Post</button>
 </form>
+
+<style>
+  form {
+    display: grid;
+    grid-template-columns: 49% 49%;
+    grid-template-areas:
+              'submit publish'
+              'title author'
+              'content content';
+    grid-gap: 1em;
+    width: 80%;
+  }
+  label {
+    display: grid;
+  }
+  #publishCheckbox {
+    grid-area: publish;
+    display: flex;
+    align-items: center;
+  }
+  #submit {
+    grid-area: submit;
+  }
+  #titleInput {
+    grid-area: title;
+  }
+  #authorInput {
+    grid-area: author;
+  }
+  #contentInput {
+    grid-area: content;
+  }
+  textarea {
+    height: 200px;
+    resize: none;
+    background-color: #444A4B;
+    padding: 1em;
+  }
+  input {
+    height: min-content;
+    background-color: #444A4B;
+    padding: 1em;
+  }
+  button {
+    width: max-content;
+    height: min-content;
+    background-color: transparent;
+    font-size: 1em;
+    transition: 0.3s;
+  }
+  button:hover {
+    color: #24889e;
+  }
+  * {
+    border: none;
+    outline: none;
+    color: #ebeef0;
+  }
+</style>
