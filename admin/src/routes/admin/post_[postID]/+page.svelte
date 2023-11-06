@@ -60,10 +60,11 @@
         <span class="deleteCommentWrapper">
           {#if !showDeleteConfirmation}
             <button on:click={() => toggleDeleteConfirm(comment._id)}>Delete</button>
+            <a href={`/admin/post_${postID}/update_${comment._id}`}>Edit comment</a>
           {:else}
-              <button on:click={() => deletePost(comment._id)}>Delete</button>
-              <p>Are you sure you want to delete this comment?</p>
-              <button on:click={() => toggleDeleteConfirm(comment._id)}>Cancel</button>
+            <button on:click={() => deletePost(comment._id)}>Delete</button>
+            <p>Are you sure you want to delete this comment?</p>
+            <button on:click={() => toggleDeleteConfirm(comment._id)}>Cancel</button>
           {/if}
         </span>
       </li>
@@ -127,5 +128,8 @@
   }
   button:hover {
     color: #24889e;
+  }
+  a {
+    margin-left: 1em;
   }
 </style>
