@@ -1,3 +1,32 @@
+<script>
+  import { goto } from '$app/navigation'
+  import { authToken } from '/src/stores/authStore';
+  import { fetchComments } from '/src/stores/comments'
+
+  export let data
+  const { comment, postID, commentID } = data
+  
+  let username = comment.username
+  let content = comment.content
+
+  async function submitPost() {
+    const data = new URLSearchParams()
+    data.append('username', username)
+    data.append('content', content)
+
+    await fetch(`${import.meta.env.VITE_API_DOMAIN}/api/posts/${postID}/comments/${commentID}`, {
+      method: 'PUT',
+      body: data,
+      headers: {
+        Authorization: `Bearer ${$authToken}`
+      }
+    })
+
+    await fetchComments(postID)
+    goto(`/admin/post_${postID}`)
+  }
+
+</script>
 
 <h2>Update Comment!</h2>
 
