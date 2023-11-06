@@ -38,7 +38,7 @@
 <h2>Update Post!</h2>
 
 <form on:submit|preventDefault={submitPost}>
-  <button type="submit" id="submit">Submit Post</button>
+  <button type="submit" id="submit">Submit updates</button>
   <label id="publishCheckbox">
     Publish on submit?
     <input on:change={togglePublished} type='checkbox'/>
