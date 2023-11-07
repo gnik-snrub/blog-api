@@ -64,12 +64,6 @@
   #contentInput {
     grid-area: content;
   }
-  textarea {
-    height: 200px;
-    resize: none;
-    background-color: #444A4B;
-    padding: 1em;
-  }
   input {
     height: min-content;
     background-color: #444A4B;
