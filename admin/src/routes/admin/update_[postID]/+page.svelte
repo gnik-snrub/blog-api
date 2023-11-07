@@ -41,7 +41,7 @@
   <button type="submit" id="submit">Submit updates</button>
   <label id="publishCheckbox">
     Publish on submit?
-    <input on:change={togglePublished} type='checkbox'/>
+    <input on:change={togglePublished} checked={isPublished} type='checkbox'/>
   </label>
   <label id="titleInput">
     Title
